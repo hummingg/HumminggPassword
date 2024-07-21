@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         txtUserName = findViewById(R.id.txtUserName);
         txtPassword = findViewById(R.id.txtPassword);
         txtResult = findViewById(R.id.txtResult);
-        txtResult.setMovementMethod(new ScrollingMovementMethod());
+//        txtResult.setMovementMethod(new ScrollingMovementMethod());
 
         // 注册 ActivityResultLauncher
         createFileLauncher = registerForActivityResult(
@@ -159,12 +159,13 @@ public class MainActivity extends AppCompatActivity {
                 @SuppressLint("Range") String user = cursor.getString(cursor.getColumnIndex("user_name"));
                 @SuppressLint("Range") String pass = cursor.getString(cursor.getColumnIndex("password"));
                 @SuppressLint("Range") String time = cursor.getString(cursor.getColumnIndex("create_time"));
+                time = DateTimeUtils.getLocalTime(time);
 
                 results.append(id).append("\n")
                         .append(app).append("\n")
                         .append(user).append("\n")
                         .append(pass).append("\n")
-                        .append(time).append("\n***************\n");
+                        .append(time).append("\n****************************************\n");
             } while (cursor.moveToNext());
         } else {
             results.append("没有匹配的密码记录。");
